@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Car Details Form</title>
+    <script>
+      function predict_price(){
+        const carForm = document.getElementById('car-form');
+        // carForm.addEventListener('submit', function(event) {
+          event.preventDefault(); // prevent form submission
+          
+          const formData = new FormData(carForm);
+          
+          fetch('/api/cars', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            alert('Car details submitted successfully!');
+          })
+          .catch(error => {
+            console.error(error);
+            alert('An error occurred while submitting the car details.');
+          });
+        //});
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Car Details Form</h1>
+    <form id="car-form">
+      <label for="year">Year:</label>
+      <input type="number" id="year" name="year" required><br><br>
+
+      <!-- <label for="selling_price">Selling Price:</label>
+      <input type="number" id="selling_price" name="selling_price" required><br><br> -->
+
+      <label for="km_driven">Kilometers Driven:</label>
+      <input type="number" id="km_driven" name="km_driven" required><br><br>
+
+      <label for="fuel">Fuel Type:</label>
+      <select id="fuel" name="fuel" required>
+        <option value="">-- Select Fuel Type --</option>
+        <option value="Petrol">Petrol</option>
+        <option value="Diesel">Diesel</option>
+        <option value="CNG">CNG</option>
+        <option value="LPG">LPG</option>
+        <!-- <option value="Electric">Electric</option>
+        <option value="Hybrid">Hybrid</option> -->
+      </select><br><br>
+
+      <label for="seller_type">Seller Type:</label>
+      <select id="seller_type" name="seller_type" required>
+        <option value="">-- Select Seller Type --</option>
+        <option value="Individual">Individual</option>
+        <option value="Dealer">Dealer</option>
+      </select><br><br>
+
+      <label for="transmission">Transmission:</label>
+      <select id="transmission" name="transmission" required>
+        <option value="">-- Select Transmission Type --</option>
+        <option value="Manual">Manual</option>
+        <option value="Automatic">Automatic</option>
+      </select><br><br>
+
+      <label for="owner">Number of Owners:</label>
+      <select id="owner" name="owner" required>
+        <option value="">-- Select no of owners --</option>
+        <option value="First Owner">First Owner</option>
+        <option value="Second Owner">Second Owner</option>
+        <option value="Third Owner">Third Owner</option>
+        <option value="Fourth & Above Owner">Fourth & Above Owner</option>
+      </select><br><br>
+
+      <label for="mileage">Mileage:</label>
+      <input type="text" id="mileage" name="mileage" required><br><br>
+
+      <label for="seats">Number of Seats:</label>
+      <input type="number" id="seats" name="seats" required><br><br>
+
+      <label for="brand">Brand:</label>
+      <input type="text" id="brand" name="brand" required><br><br>
+
+      <label for="model">Model:</label>
+      <input type="text" id="model" name="model" required><br><br>
+
+      <label for="make_country">Country of Origin:</label>
+      <input type="text" id="make_country" name="make_country" required><br><br>
+
+      <input type="submit" value="Submit" onclick=predict_price()>
+    </form>
+  </body>
+</html>
